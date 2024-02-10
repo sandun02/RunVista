@@ -4,12 +4,14 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 
 import { carsReducer } from './reducers/carsReducer';
+import { alertsReducer } from './reducers/alertsReducer';
 
 
 const composeEnhancers = composeWithDevTools({});
 
 const rootReducer = combineReducers({
-     carsReducer
+     carsReducer,
+     alertsReducer,
 })
 
 const store = createStore(
