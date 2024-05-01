@@ -20,6 +20,24 @@ export const userLogin=(reqObj)=>async dispatch=>{
         dispatch({type: 'LOADING' , payload:false})
     }
 }
+export const adminLogin = (reqObj) => async dispatch => {
+    dispatch({ type: 'LOADING', payload: true });
+
+    try {
+        const response = await axios.post('/api/users/login', reqObj);
+        localStorage.setItem('user', JSON.stringify(response.data));
+        message.success('Admin login success');
+        dispatch({ type: 'LOADING', payload: false });
+        setTimeout(() => {
+            window.location.href = '/admin'
+        }, 500);
+    } catch (error) {
+        console.log(error);
+        message.error('Admin login failed');
+        dispatch({ type: 'LOADING', payload: false });
+    }
+}
+
 
 export const userRegister=(reqObj)=>async dispatch=>{
     
